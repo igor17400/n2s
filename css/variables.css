@@ -1,0 +1,20 @@
+:root {
+    /* Colors */
+    --color-dark: #222831;
+    --color-gray: #393E46;
+    --color-teal: #FF70AB;
+    --color-light: #EEEEEE;
+    
+    /* Typography */
+    --font-primary: 'Libre Baskerville', serif;
+    --font-secondary: 'Alegreya', serif;
+    --font-tertiary: 'Open Sans', sans-serif;
+    
+    /* Spacing */
+    --spacing-small: 0.5rem;
+    --spacing-medium: 1rem;
+    --spacing-large: 2rem;
+    
+    /* Transitions */
+    --transition-speed: 0.3s;
+} 

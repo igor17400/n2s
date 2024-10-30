@@ -1,0 +1,246 @@
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 40px 2rem;
+}
+
+/* Responsive breakpoints */
+@media (min-width: 1200px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    }
+}
+
+/* For very large screens, optionally show 4 cards per row */
+@media (min-width: 1600px) {
+    .card-container {
+        grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+    }
+}
+
+/* For smaller screens, stack cards vertically */
+@media (max-width: 768px) {
+    .card-container {
+        grid-template-columns: 1fr; /* 1 card per row on mobile */
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+}
+
+.card {
+    position: relative;
+    min-height: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+    font-size: 2rem;
+}
+
+.card p {
+    font-size: 1.0rem;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50px;
+    width: 75%;
+    height: 100%;
+    background: linear-gradient(315deg, var(--card-color-1, #ffbc00), var(--card-color-2, #ff0058));
+    border-radius: 8px;
+    transform: skewX(15deg);
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50px;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(315deg, var(--card-color-1, #ffbc00), var(--card-color-2, #ff0058));
+    border-radius: 8px;
+    transform: skewX(15deg);
+    transition: 0.5s;
+    filter: blur(30px);
+}
+
+.card:hover::before,
+.card:hover::after {
+    transform: skewX(0deg);
+    left: 20px;
+    width: calc(100% - 90px);
+}
+
+.card-content {
+    position: relative;
+    padding: 20px 40px;
+    padding-top: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 3;
+    transition: 0.5s;
+    color: #fff;
+}
+
+.card:hover .card-content {
+    padding: 60px 40px;
+    transform: translateX(-25px);
+}
+
+.card span {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.card span::before,
+.card span::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    opacity: 0;
+    transition: 0.5s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.card:hover span::before {
+    top: -50px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+    animation: animate 2s ease-in-out infinite;
+}
+
+.card:hover span::after {
+    bottom: -50px;
+    right: 50px;
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+    animation: animate 2s ease-in-out infinite;
+    animation-delay: -1s;
+}
+
+@keyframes animate {
+    0%, 100% {
+        transform: translateY(10px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.signal-processing {
+    --card-color-1: #000dff;
+    --card-color-2: #1e2a26;
+}
+
+.algorithms {
+    --card-color-1: #03a9f4;
+    --card-color-2: #ff0058;
+}
+
+.information-theory {
+    --card-color-1: #0379ffdf;
+    --card-color-2: #11ff00;
+}
+
+.deep-learning {
+    --card-color-1: #ffee0000;
+    --card-color-2: #ffd000;
+}
+
+.attribution {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px;
+    opacity: 0.7;
+    z-index: 2;
+}
+
+.card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.card-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.card-icon {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.card-icon:hover {
+    color: var(--accent-color);
+    transform: scale(1.2);
+}
+
+/* Add styles for the click indicator */
+.click-indicator {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: var(--color-light);
+    opacity: 0.8;
+    transition: transform 0.3s ease;
+}
+
+.click-indicator i {
+    font-size: 1.2rem;
+}
+
+.card:hover .click-indicator {
+    transform: translate(3px, -3px);
+}
+
+/* Make the entire card clickable and show pointer cursor */
+.card {
+    cursor: pointer;
+}
+
+/* Prevent GitHub link from triggering card click */
+.card-links a {
+    position: relative;
+    z-index: 10;
+}
