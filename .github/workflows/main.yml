@@ -21,6 +21,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name: Create the .ssh directory
         run: |
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
@@ -33,6 +35,6 @@ jobs:
           echo "${{ secrets.KNOWN_HOSTS }}" > ~/.ssh/known_hosts
       - name: Deploy website
         run: |
-          ssh -i ~/.ssh/deploy deployer@ssh.n2sqseries.com
+          ssh -i ~/.ssh/deploy deployer@ssh.n2sqseries.com "${{ secrets.PROJECT_NAME }}"
 
 
