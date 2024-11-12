@@ -2,7 +2,6 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    max-width: 1200px;
     margin: 2rem auto;
     padding: 40px 2rem;
 }
@@ -10,21 +9,28 @@
 /* Responsive breakpoints */
 @media (min-width: 1200px) {
     .card-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 cards per row */
+        gap: 3rem;
+        /* Increased gap for larger screens */
     }
 }
 
 /* For very large screens, optionally show 4 cards per row */
 @media (min-width: 1600px) {
     .card-container {
-        grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+        grid-template-columns: repeat(2, 1fr);
+        /* 4 cards per row */
+        gap: 4rem;
+        /* Further increased gap for very large screens */
     }
 }
 
 /* For smaller screens, stack cards vertically */
 @media (max-width: 768px) {
     .card-container {
-        grid-template-columns: 1fr; /* 1 card per row on mobile */
+        grid-template-columns: 1fr;
+        /* 1 card per row on mobile */
         gap: 1.5rem;
         padding: 0 1rem;
     }
@@ -127,7 +133,7 @@
     border-radius: 8px;
     opacity: 0;
     transition: 0.5s;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 .card:hover span::before {
@@ -150,9 +156,12 @@
 }
 
 @keyframes animate {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(10px);
     }
+
     50% {
         transform: translateY(-10px);
     }
@@ -193,7 +202,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
     opacity: 0;
     pointer-events: none;
     z-index: 0;
